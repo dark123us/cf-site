@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import {useEffect, useReducer} from 'react';
 
 enum ActionKind {
     FETCHING = 'FETCHING',
@@ -8,7 +8,7 @@ enum ActionKind {
 }
 
 type ErrorType = string
-type DataType = object
+type DataType = object | string
 
 interface ActionFetching {
     type: ActionKind.FETCHING
@@ -65,27 +65,28 @@ interface RequestArgs {
     idRequest?: number
 }
 
-const getRequest = (requestArgs: RequestArgs): Request => {
-    const {
-        idRequest, session, params, method = 'report',
-    } = requestArgs;
-    const request: Request = {
-        jsonrpc: '2.0',
-        method,
-        params,
-    };
-    if (!('session' in params)) request.params.session = session;
-    if (idRequest !== undefined) request.id = idRequest;
-    return request;
-};
+// const getRequest = (requestArgs: RequestArgs): Request => {
+//     const {
+//         idRequest, session, params, method = 'report',
+//     } = requestArgs;
+//     const request: Request = {
+//         jsonrpc: '2.0',
+//         method,
+//         params,
+//     };
+//     if (!('session' in params)) request.params.session = session;
+//     if (idRequest !== undefined) request.id = idRequest;
+//     return request;
+// };
 
-export const useApi = (url: string, requestArgs: RequestArgs) => {
-    const {
-        method = 'report',
-        idRequest,
-        session,
-        params,
-    } = requestArgs;
+// export const useApi = (url: string, requestArgs: RequestArgs) => {
+export const useApi = (url: string) => {
+    // const {
+    //     // method = 'report',
+    //     // idRequest,
+    //     // session,
+    //     params,
+    // } = requestArgs;
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(():(()=> void) => {
@@ -94,24 +95,26 @@ export const useApi = (url: string, requestArgs: RequestArgs) => {
             cancelRequest = true;
         };
 
-        if (url === undefined || !url.trim() || params === undefined
-            || params == null) return clenUp;
+        if (url === undefined || !url.trim()
+            // || params === undefined
+            // || params == null
+        ) return clenUp;
         const fetchData = async () => {
             try {
                 dispatch({ type: ActionKind.FETCHING });
-                const request = getRequest(requestArgs);
+                // const request = getRequest(requestArgs);
                 const response = await fetch(`${url}/api`, {
-                    method: 'POST',
+                    method: 'GET',
                     // mode: 'no-cors', // no-cors, *cors, same-origin
                     // cache: 'no-cache',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(request),
+                    // headers: {
+                    //     'Content-Type': 'application/json',
+                    // },
+                    // body: JSON.stringify(request),
                 });
-                // console.log("done", response.ok);
+                console.log("done", response.ok);
                 if (!response.ok) { throw response; }
-                const data = await response.json();
+                const data = await response.text();
                 // console.log(data);
                 if (cancelRequest) return;
                 dispatch({ type: ActionKind.FETCHED, data });
@@ -124,6 +127,7 @@ export const useApi = (url: string, requestArgs: RequestArgs) => {
         };
         fetchData().then();
         return clenUp;
-    }, [url, requestArgs, params]);
+    }, [url]);
+    // }, [url, requestArgs, params]);
     return state;
 };
