@@ -54,8 +54,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         if: always()
-        #   with:
-        #     path: 'reports'
+        with:
+          path: 'reports'
       - name: Deploy to GitHub Pages
         id: deployment
         if: always()
