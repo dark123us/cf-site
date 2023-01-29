@@ -31,7 +31,7 @@ jobs:
         run: npm ci --force
       - name: build production project
         #        run: npm run build:prod
-        run npm build
+        run: npm build
         if: always()
         # - name: build storybook
         #   run: npm run storybook:build
