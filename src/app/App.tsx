@@ -1,4 +1,3 @@
-import {useApi} from "../shared/lib/hooks/useApi";
 import {useEffect} from "react";
 
 const App = () => {
