@@ -5,7 +5,7 @@ const App = () => {
 
     useEffect( () => {
         const fetchdata = async () => {
-            const res = await fetch(process.env.PUBLIC_URL + "/static/js/testrequest.js")
+            const res = await fetch("https://raw.githubusercontent.com/dark123us/cf-site/main/api/testrequest.json")
             const data = await res.text()
             console.log(data)
         }
