@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import {MainPage} from "@/pages/MainPage";
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
         <div className="app">
             Hello World
             <button type={"button"} onClick={onClick}>test data</button>
+            <MainPage/>
         </div>
     );
 };

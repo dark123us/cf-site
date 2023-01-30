@@ -10,23 +10,36 @@
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "husky": "^8.0.3",
+    "i18next": "^22.4.9",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.1.4",
     "react-scripts": "5.0.1",
+    "sass": "^1.57.1",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && node scripts/copyapi.js",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build && node scripts/copyapi.js",
+    "test": "craco test",
     "eject": "react-scripts eject",
-    "copy": "node scripts/copyapi.js"
+    "copy": "node scripts/copyapi.js",
+    "storybook": "npm run storybook"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "prettier --list-different",
+      "eslint"
     ]
   },
   "browserslist": {
@@ -40,5 +53,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.0.0",
+    "@storybook/react": "^6.5.16",
+    "craco-alias": "^3.0.1",
+    "customize-cra": "^1.0.0",
+    "react-app-alias": "^2.2.2",
+    "react-app-rewired": "^2.2.1"
   }
 }
