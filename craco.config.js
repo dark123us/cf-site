@@ -1,6 +1,10 @@
 const CracoAlias = require("craco-alias");
 
 module.exports = {
+    devServer: {
+        port: 13000
+
+    },
     plugins: [
         {
             plugin: CracoAlias,
