@@ -1,0 +1,15 @@
+PREFIX=site-cf
+
+NAMEIMAGE=vd-dev
+VERSION=v16
+IMAGE=hub.cap.by/$NAMEIMAGE:$VERSION
+
+SRC=$PROJECT
+SRC_TMP=$SRC/tmp
+
+LOG=$SRC_TMP/log
+
+HOME_DST=/home/dark123us
+
+DST=$HOME_DST/app
+DST_TMP=$HOME_DST/tmp
