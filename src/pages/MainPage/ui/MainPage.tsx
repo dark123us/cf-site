@@ -1,4 +1,5 @@
 import {classNames} from '@/shared/lib/classNames/classNames';
+import { Button } from '@/shared/ui/Button';
 import {memo, ReactNode} from 'react';
 import cls from './MainPage.module.scss';
 
@@ -16,6 +17,7 @@ export const MainPage = memo((props: MainPageProps) => {
         <div className={classNames(cls.MainPage, {}, [className])}>
             {children}
             MainPage
+            <Button>Hello</Button>
         </div>
     );
 });

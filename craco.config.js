@@ -2,8 +2,8 @@ const CracoAlias = require("craco-alias");
 
 module.exports = {
     devServer: {
-        port: 13000
-
+        port: 13000,
+        historyApiFallback: false,
     },
     plugins: [
         {
@@ -18,5 +18,11 @@ module.exports = {
                 tsConfigPath: "./tsconfig.paths.json"
             }
         }
-    ]
+    ],
+    addons: [{
+        name: "storybook-preset-craco",
+        options: {
+            cracoConfigFile: "../craco.config.js",
+        },
+    }],
 };

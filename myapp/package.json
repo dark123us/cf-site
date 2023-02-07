@@ -1,45 +1,43 @@
 {
-  "name": "cf",
+  "name": "myapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^29.4.0",
-    "@types/node": "^18.11.18",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.12",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-    "husky": "^8.0.3",
-    "i18next": "^22.4.9",
-    "lint-staged": "^13.1.0",
-    "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^12.1.4",
     "react-scripts": "5.0.1",
-    "sass": "^1.57.1",
-    "typescript": "^4.9.4",
+    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build && node scripts/copyapi.js",
-    "test": "craco test",
+    "start": "PORT=13000 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "copy": "node scripts/copyapi.js",
-    "storybook": "start-storybook -p 13001 -c config/storybook"
+    "storybook": "start-storybook -p 13001 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
-  },
-  "lint-staged": {
-    "**/*.{ts,tsx}": [
-      "prettier --list-different",
-      "eslint"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -55,21 +53,18 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^7.0.0",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
-    "@storybook/addon-knobs": "^6.4.0",
     "@storybook/addon-links": "^6.5.16",
-    "@storybook/addon-viewport": "^6.5.16",
     "@storybook/builder-webpack5": "^6.5.16",
     "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/node-logger": "^6.5.16",
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.16",
-    "craco-alias": "^3.0.1",
-    "customize-cra": "^1.0.0",
-    "react-app-alias": "^2.2.2",
-    "react-app-rewired": "^2.2.1",
-    "storybook-preset-craco": "0.0.6"
+    "@storybook/testing-library": "0.0.13",
+    "babel-plugin-named-exports-order": "0.0.2",
+    "prop-types": "^15.8.1",
+    "webpack": "^5.75.0"
   }
 }
