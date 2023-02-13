@@ -2,7 +2,6 @@ import {useEffect} from "react";
 import {MainPage} from "@/pages/MainPage";
 
 const App = () => {
-
     useEffect( () => {
         const fetchdata = async () => {
             const res = await fetch("https://raw.githubusercontent.com/dark123us/cf-site/main/api/testrequest.json")
